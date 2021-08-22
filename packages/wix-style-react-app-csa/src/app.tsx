@@ -6,10 +6,8 @@ export interface AppProps {
     className?: string;
 }
 
-export const App: React.VFC<AppProps> = ({ className }) => {
-    return (
+export const App: React.VFC<AppProps> = ({ className }) => (
         <main className={st(classes.root, className)}>
             <ProductsPage/>
         </main>
-    );
-};
+);
