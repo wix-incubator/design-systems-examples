@@ -1,8 +1,6 @@
 name: GitHub Actions Demo
-on:
-  push:
-    paths:
-      - "**/packages/wix-style-react-app-csa/**"
+on: [push]
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -35,5 +33,6 @@ jobs:
 
     - name: Build
       run: |
+        cd packages/wix-style-react-app-csa      
         npm install
         npx webpack --mode production --no-devtool
