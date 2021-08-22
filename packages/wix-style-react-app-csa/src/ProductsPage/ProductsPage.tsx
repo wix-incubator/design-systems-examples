@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import {
     CardGalleryItem,
     PopoverMenu,
@@ -17,9 +17,17 @@ import More from 'wix-ui-icons-common/More';
 import Delete from 'wix-ui-icons-common/Delete';
 import Hidden from 'wix-ui-icons-common/Hidden';
 
-const ProductsPage = () => {
+interface Product {
+    imageSrc: string;
+    title: string;
+    subtitle: string;
+    badge: JSX.Element;
 
-    const renderCardGalleryItem = ({ imageSrc, title, subtitle, badge }) => (
+}
+
+const ProductsPage: React.FC = () => {
+
+    const renderCardGalleryItem = ({ imageSrc, title, subtitle, badge }: Product) => (
         <CardGalleryItem
             title={title}
             subtitle={subtitle}
@@ -87,6 +95,7 @@ const ProductsPage = () => {
                         items={[1, 2, 3].map(i => ({ id: `${i}`, value: `Page ${i}` }))}
                         activeId="3"
                         size="medium"
+                        // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onClick={() =>{}}
                     />
                 }
