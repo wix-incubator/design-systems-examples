@@ -1,18 +1,7 @@
-import {
-    Container,
-    Row,
-    Col,
-    Card,
-    FormField,
-    Input,
-    InputArea,
-    NumberInput,
-    Box,
-    Button,
-} from 'wix-style-react';
-import * as Icons from 'wix-ui-icons-common';
+import { Card, FormField, Input, InputArea, NumberInput, Box, Button } from 'wix-style-react';
+import Link from 'wix-ui-icons-common/Link';
 import { Layout, Cell } from 'wix-style-react';
-import React from 'react';
+import type React from 'react';
 
 export interface IAddProductCardProp {
     name: string;
@@ -28,106 +17,84 @@ export interface IAddProductCardProp {
     isSaveEnabled: boolean;
 }
 
-export const AddProductCard: React.FC<IAddProductCardProp> = (props) => {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    const {
-        name,
-        description,
-        price,
-        imageLink,
-        onNameChanges,
-        ondescriptionChanges,
-        onPriceChanges,
-        onImageLinkChanges,
-        onCancel,
-        onSave,
-        isSaveEnabled,
-    } = props;
-
+export const AddProductCard: React.FC<IAddProductCardProp> = ({
+    name,
+    description,
+    price,
+    imageLink,
+    onNameChanges,
+    ondescriptionChanges,
+    onPriceChanges,
+    onImageLinkChanges,
+    onCancel,
+    onSave,
+    isSaveEnabled,
+}) => {
     return (
         <Card>
             <Card.Header title="Add new item" dataHook="add-product-card-header" />
             <Card.Divider />
             <Card.Content>
-                <Box>
-                    <Layout>
-                        <Cell span={3}>
-                            <FormField label="Name">
-                                <Input
-                                    dataHook="input-product-name"
-                                    placeholder="Enter a name"
-                                    value={name}
-                                    onChange={(e) => onNameChanges(e.target.value)}
+                <Layout>
+                    <Cell span={3}>
+                        <FormField label="Name">
+                            <Input
+                                placeholder="Enter a name"
+                                value={name}
+                                onChange={({ target }) => onNameChanges(target.value)}
+                            />
+                        </FormField>
+                    </Cell>
+                    <Cell span={3}>
+                        <FormField label="Price">
+                            <Box width="126px">
+                                <NumberInput
+                                    value={price}
+                                    placeholder="Value"
+                                    onChange={(e) => onPriceChanges(e)}
+                                    prefix={<Input.Affix>$</Input.Affix>}
                                 />
-                            </FormField>
-                        </Cell>
-                        <Cell span={3}>
-                            <FormField label="Price">
-                                <Box width="126px">
-                                    <NumberInput
-                                        dataHook="input-product-price"
-                                        value={price}
-                                        placeholder="Value"
-                                        onChange={(e) => onPriceChanges(e)}
-                                        prefix={<Input.Affix>$</Input.Affix>}
-                                    />
-                                </Box>
-                            </FormField>
-                        </Cell>
-                        <Cell span={6}></Cell>
-                        <Cell span={3}>
-                            <FormField label="Description">
-                                <InputArea
-                                    dataHook="input-aread-product-description"
-                                    value={description}
-                                    onChange={(e) => ondescriptionChanges(e.target.value)}
-                                    placeholder="value"
-                                    minHeight="112px"
-                                    maxHeight="112px"
-                                />
-                            </FormField>
-                        </Cell>
-                        <Cell span={3}>
-                            <FormField label="Image">
-                                <Input
-                                    dataHook="input-img-url"
-                                    value={imageLink}
-                                    onChange={(e) => onImageLinkChanges(e.target.value)}
-                                    placeholder="Image Link"
-                                    prefix={
-                                        <Input.IconAffix>
-                                            <Icons.Link />
-                                        </Input.IconAffix>
-                                    }
-                                />
-                            </FormField>
-                        </Cell>
-                        <Cell><Box height="350px"/></Cell>
-                    </Layout>
-                </Box>
+                            </Box>
+                        </FormField>
+                    </Cell>
+                    <Cell span={6} />
+                    <Cell span={3}>
+                        <FormField label="Description">
+                            <InputArea
+                                value={description}
+                                onChange={({ target }) => ondescriptionChanges(target.value)}
+                                placeholder="value"
+                                minHeight="112px"
+                                maxHeight="112px"
+                            />
+                        </FormField>
+                    </Cell>
+                    <Cell span={3}>
+                        <FormField label="Image">
+                            <Input
+                                value={imageLink}
+                                onChange={({ target }) => onImageLinkChanges(target.value)}
+                                placeholder="Image Link"
+                                prefix={
+                                    <Input.IconAffix>
+                                        <Link />
+                                    </Input.IconAffix>
+                                }
+                            />
+                        </FormField>
+                    </Cell>
+                </Layout>
             </Card.Content>
             <Card.Divider />
             <Layout>
                 <Cell>
-                    <Box padding="30px" align="right">
-                        <Box width="80px">
-                            <Button
-                                onClick={onCancel}
-                                priority="secondary"
-                                dataHook="cancel-button"
-                            >
-                                Cancel
-                            </Button>
-                        </Box>
-                        <Box marginLeft="18px" width="80px">
-                            <Button
-                                disabled={!isSaveEnabled}
-                                dataHook="save-button"
-                                onClick={onSave}
-                            >
-                                Save
-                            </Button>
-                        </Box>
+                    <Box padding="SP4" gap="SP2" align="right">
+                        <Button onClick={onCancel} priority="secondary" dataHook="cancel-button">
+                            Cancel
+                        </Button>
+                        <Button disabled={!isSaveEnabled} dataHook="save-button" onClick={onSave}>
+                            Save
+                        </Button>
                     </Box>
                 </Cell>
             </Layout>

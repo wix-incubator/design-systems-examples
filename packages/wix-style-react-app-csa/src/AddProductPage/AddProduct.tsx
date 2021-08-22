@@ -1,51 +1,52 @@
-import * as React from 'react';
-import { Cell, Page, Layout } from 'wix-style-react';
+import type React from 'react';
+import { Page, Breadcrumbs } from 'wix-style-react';
 import { AddProductCard } from './AddProductCard';
-import { breadcrumbs, useForm } from './AddProductUtils';
+import { useForm } from './AddProductUtils';
 
 const AddProduct: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const {
-    name,
-    description,
-    price,
-    imageLink,
-    isSaveEnabled,
-    setName,
-    setDescription,
-    setPrice,
-    setImageLink,
-    onSave,
-    onCancel,
-  } = useForm();
-  return (
-    <Page>
-      <Page.Header
-        title="Untitled Product"
-        dataHook="add-product-page-header"
-        breadcrumbs={breadcrumbs()}
-      />
-      <Page.Content>
-        <Layout>
-            <Cell span={12}>
-              <AddProductCard
-                name={name}
-                description={description}
-                price={0}
-                imageLink={imageLink}
-                onNameChanges={setName}
-                ondescriptionChanges={setDescription}
-                onPriceChanges={setPrice}
-                onImageLinkChanges={setImageLink}
-                onSave={onSave}
-                onCancel={onCancel}
-                isSaveEnabled={isSaveEnabled}
-              />
-            </Cell>
-        </Layout>
-      </Page.Content>
-    </Page>
-  );
+    const {
+        name,
+        description,
+        price,
+        imageLink,
+        isSaveEnabled,
+        setName,
+        setDescription,
+        setPrice,
+        setImageLink,
+        onSave,
+        onCancel,
+    } = useForm();
+    return (
+        <Page height="100vh">
+            <Page.Header
+                title="Untitled Product"
+                breadcrumbs={
+                    <Breadcrumbs
+                        items={[
+                            { id: 1, value: 'Products', link: 'productslist' },
+                            { id: 2, value: 'Untitled Product' },
+                        ]}
+                    />
+                }
+            />
+            <Page.Content>
+                <AddProductCard
+                    name={name}
+                    description={description}
+                    price={priceValue}
+                    imageLink={imageLink}
+                    onNameChanges={setName}
+                    ondescriptionChanges={setDescription}
+                    onPriceChanges={setPrice}
+                    onImageLinkChanges={setImageLink}
+                    onSave={onSave}
+                    onCancel={onCancel}
+                    isSaveEnabled={isSaveEnabled}
+                />
+            </Page.Content>
+        </Page>
+    );
 };
 
 export default AddProduct;
