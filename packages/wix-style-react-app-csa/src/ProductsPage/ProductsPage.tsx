@@ -100,7 +100,7 @@ const ProductsPage = () => {
                     }
                     <Cell span={4}>
                         <Proportion>
-                            <AddItem>Add Item</AddItem>
+                            <AddItem size="large">Add Item</AddItem>
                         </Proportion>
                     </Cell>
                 </Layout>
