@@ -6,10 +6,12 @@ export interface AppProps {
     className?: string;
 }
 
+
+
 export const App: React.VFC<AppProps> = ({ className }) => {
     return (
         <main className={st(classes.root, className)}>
-            <Button>Hello! There :)</Button>
+            <Button>Hello! There :) :)</Button>
         </main>
     );
 };
