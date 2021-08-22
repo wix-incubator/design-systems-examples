@@ -34,7 +34,7 @@ const AddProduct: React.FC = () => {
                 <AddProductCard
                     name={name}
                     description={description}
-                    price={priceValue}
+                    price={price}
                     imageLink={imageLink}
                     onNameChanges={setName}
                     ondescriptionChanges={setDescription}
