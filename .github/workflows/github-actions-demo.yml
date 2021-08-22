@@ -2,7 +2,7 @@ name: GitHub Actions Demo
 on:
   push:
     paths:
-      - "packages/wix-style-react-app-csa/**"
+      - "**/packages/wix-style-react-app-csa/**"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
