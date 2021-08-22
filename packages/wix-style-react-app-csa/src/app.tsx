@@ -12,4 +12,4 @@ export const App: React.VFC<AppProps> = ({ className }) => {
             <Button>Hello There :)</Button>
         </main>
     );
-};
+
