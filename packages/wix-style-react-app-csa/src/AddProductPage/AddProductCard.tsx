@@ -32,7 +32,7 @@ export const AddProductCard: React.FC<IAddProductCardProp> = ({
 }) => {
     return (
         <Card>
-            <Card.Header title="Add new item" dataHook="add-product-card-header" />
+            <Card.Header title="Add new item" />
             <Card.Divider />
             <Card.Content>
                 <Layout>
@@ -89,10 +89,10 @@ export const AddProductCard: React.FC<IAddProductCardProp> = ({
             <Layout>
                 <Cell>
                     <Box padding="SP4" gap="SP2" align="right">
-                        <Button onClick={onCancel} priority="secondary" dataHook="cancel-button">
+                        <Button onClick={onCancel} priority="secondary">
                             Cancel
                         </Button>
-                        <Button disabled={!isSaveEnabled} dataHook="save-button" onClick={onSave}>
+                        <Button disabled={!isSaveEnabled} onClick={onSave}>
                             Save
                         </Button>
                     </Box>
