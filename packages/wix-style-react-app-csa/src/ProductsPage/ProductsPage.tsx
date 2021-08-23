@@ -101,7 +101,7 @@ const ProductsPage: React.FC = () => {
                         <Cell>
                             <EmptyState
                                 theme='page'
-                                image={<Box height={120} width={120} borderRadius={'50%'} backgroundColor={'D50'}/>}
+                                image={<Box height={120} width={120} borderRadius='50%' backgroundColor='D50'/>}
                                 title="You don't have any items yet"
                                 subtitle="Create your product item in an easy & fast way to display it on your site"
                             />
