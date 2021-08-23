@@ -10,7 +10,6 @@ export interface AppProps {
     className?: string;
 }
 
-
 export const App: React.VFC<AppProps> = ({ className }) => (
     <Context.Provider value={contextValue()}>
         <main className={st(classes.root, className)}>
