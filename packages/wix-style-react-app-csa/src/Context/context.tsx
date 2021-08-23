@@ -2,10 +2,10 @@ import React from 'react';
 import { Badge } from 'wix-style-react';
 
 export interface Product {
+    id: string;
     imageSrc: string;
     title: string;
     subtitle: string;
-    id: string;
     badge: JSX.Element;
 }
 
