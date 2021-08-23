@@ -5,18 +5,20 @@ export interface Product {
     imageSrc: string;
     title: string;
     subtitle: string;
+    id: string;
     badge: JSX.Element;
 }
 
 interface StoreContext {
     products: Product[];
     addProduct: (product: Product) => void;
-    removeProduct: (index: number) => void;
+    removeProduct: (id: string) => void;
 }
 
-export const contextValue = (): StoreContext => {
-    const products: Product[] = [
+export const useContextValue = (): StoreContext => {
+    const defaultProducts: Product[] = [
         {
+            id: '1',
             imageSrc:
                 'https://litb-cgis.rightinthebox.com/images/x/202105/bps/product/inc/qruive1621230222516.jpg',
             title: 'Blue Dress',
@@ -24,6 +26,7 @@ export const contextValue = (): StoreContext => {
             badge: <Badge skin="standard"> Popular</Badge>,
         },
         {
+            id: '2',
             imageSrc:
                 'https://litb-cgis.rightinthebox.com/images/640x640/202001/bgldfg1578901323092.jpg',
             title: 'Yellow Dress',
@@ -32,19 +35,24 @@ export const contextValue = (): StoreContext => {
         },
     ];
 
+    const [products, setProducts] = React.useState<Product[]>(defaultProducts);
     const addProduct = (product: Product) => {
-        products.push(product);
+        setProducts([...products, product]);
     };
 
-    const removeProduct = (index: number) => {
-        products.splice(index);
+    const removeProduct = (id: string) => {
+        setProducts([...products.filter((product) => product.id !== id)]);
     };
 
     return {
         products,
         addProduct,
         removeProduct,
-    }
+    };
 };
 
-export const Context = React.createContext<StoreContext>(contextValue());
+export const Context = React.createContext<StoreContext>({
+    products: [],
+    addProduct: () => undefined,
+    removeProduct: () => undefined,
+});

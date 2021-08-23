@@ -25,9 +25,8 @@ const ProductsPage: React.FC = () => {
 
     const renderCardGalleryItem = (
         product: Product,
-        index: number
     ) => {
-        const {title, subtitle, imageSrc, badge} = product;
+        const {title, subtitle, imageSrc, badge, id} = product;
 
         return <CardGalleryItem
             title={title}
@@ -63,7 +62,7 @@ const ProductsPage: React.FC = () => {
                         text="Delete"
                         skin="destructive"
                         prefixIcon={<Delete />}
-                        onClick={() => removeProduct(index)}
+                        onClick={() => removeProduct(id)}
                     />
                 </PopoverMenu>
             }
@@ -75,7 +74,7 @@ const ProductsPage: React.FC = () => {
         return <>
             {products.map((product, index) => (
                 <Cell key={index} span={4}>
-                    {renderCardGalleryItem(product, index)}
+                    {renderCardGalleryItem(product)}
                 </Cell>
             ))}
             <Cell span={4}>
