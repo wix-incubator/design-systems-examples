@@ -1,14 +1,12 @@
-import type React from 'react';
+import React, { useContext } from 'react';
 import {
     CardGalleryItem,
     PopoverMenu,
     IconButton,
     Layout,
     Cell,
-    Badge,
     AddItem,
     Page,
-    Breadcrumbs,
     Proportion,
 } from 'wix-style-react';
 import Duplicate from 'wix-ui-icons-common/Duplicate';
@@ -16,16 +14,11 @@ import MoveTo from 'wix-ui-icons-common/MoveTo';
 import More from 'wix-ui-icons-common/More';
 import Delete from 'wix-ui-icons-common/Delete';
 import Hidden from 'wix-ui-icons-common/Hidden';
-
-interface Product {
-    imageSrc: string;
-    title: string;
-    subtitle: string;
-    badge: JSX.Element;
-
-}
+import { useHistory } from 'react-router-dom';
+import { Context, Product } from '../Context/context';
 
 const ProductsPage: React.FC = () => {
+    const history = useHistory();
 
     const renderCardGalleryItem = ({ imageSrc, title, subtitle, badge }: Product) => (
         <CardGalleryItem
@@ -53,14 +46,8 @@ const ProductsPage: React.FC = () => {
                         </IconButton>
                     )}
                 >
-                    <PopoverMenu.MenuItem
-                        text="Dublicate"
-                        prefixIcon={<Duplicate />}
-                    />
-                    <PopoverMenu.MenuItem
-                        text="Move to"
-                        prefixIcon={<MoveTo />}
-                    />
+                    <PopoverMenu.MenuItem text="Dublicate" prefixIcon={<Duplicate />} />
+                    <PopoverMenu.MenuItem text="Move to" prefixIcon={<MoveTo />} />
                     <PopoverMenu.MenuItem text="Hide" prefixIcon={<Hidden />} />
                     <PopoverMenu.MenuItem
                         text="Archive"
@@ -72,44 +59,28 @@ const ProductsPage: React.FC = () => {
         />
     );
 
-    const products = [
-        {
-            imageSrc: 'https://litb-cgis.rightinthebox.com/images/x/202105/bps/product/inc/qruive1621230222516.jpg',
-            title:  'Blue Dress',
-            subtitle: '$15.99',
-            badge:  <Badge skin="standard"> Popular</Badge>
-        },
-        {
-            imageSrc: 'https://litb-cgis.rightinthebox.com/images/640x640/202001/bgldfg1578901323092.jpg',
-            title: 'Yellow Dress',
-            subtitle: '$7.89',
-            badge: <Badge skin="standard">New</Badge>,}
-    ];
+    const {products} = useContext(Context)
 
     return (
         <Page height="100vh">
-            <Page.Header
-                title="Page Title"
-                breadcrumbs={
-                    <Breadcrumbs
-                        items={[1, 2, 3].map(i => ({ id: `${i}`, value: `Page ${i}` }))}
-                        activeId="3"
-                        size="medium"
-                        // eslint-disable-next-line @typescript-eslint/no-empty-function
-                        onClick={() =>{}}
-                    />
-                }
-            />
+            <Page.Header title="Page Title" />
             <Page.Content>
                 <Layout>
                     {products.map((product, index) => (
                         <Cell key={index} span={4}>
                             {renderCardGalleryItem(product)}
-                        </Cell>))
-                    }
+                        </Cell>
+                    ))}
                     <Cell span={4}>
                         <Proportion>
-                            <AddItem size="large">Add Item</AddItem>
+                            <AddItem
+                                onClick={() => {
+                                    history.push('/add-product');
+                                }}
+                                size="large"
+                            >
+                                Add Item
+                            </AddItem>
                         </Proportion>
                     </Cell>
                 </Layout>
@@ -117,8 +88,5 @@ const ProductsPage: React.FC = () => {
         </Page>
     );
 };
-
-
-
 
 export default ProductsPage;

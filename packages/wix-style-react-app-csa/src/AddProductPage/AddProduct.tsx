@@ -24,9 +24,10 @@ const AddProduct: React.FC = () => {
                 breadcrumbs={
                     <Breadcrumbs
                         items={[
-                            { id: 1, value: 'Products', link: 'productslist' },
+                            { id: 1, value: 'Products', link: '/products-page' },
                             { id: 2, value: 'Untitled Product' },
-                        ]}
+                        ]
+                    }
                     />
                 }
             />

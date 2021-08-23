@@ -21,6 +21,7 @@
     "@stylable/runtime": "^4.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
     "wix-style-react": "^9.152.0"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "@stylable/webpack-plugin": "^4.6.0",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.1.8",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "css-loader": "^6.2.0",
