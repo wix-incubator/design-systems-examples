@@ -10,9 +10,11 @@ import {
     Proportion,
     EmptyState,
     Box,
+    TextButton,
 } from 'wix-style-react';
 import Duplicate from 'wix-ui-icons-common/Duplicate';
 import More from 'wix-ui-icons-common/More';
+import Add from 'wix-ui-icons-common/Add';
 import Delete from 'wix-ui-icons-common/Delete';
 import {useHistory} from 'react-router-dom';
 import {Context, Product} from '../Context/context';
@@ -104,6 +106,12 @@ const ProductsPage: React.FC = () => {
                                 image={<Box height={120} width={120} borderRadius='50%' backgroundColor='D50'/>}
                                 title="You don't have any items yet"
                                 subtitle="Create your product item in an easy & fast way to display it on your site"
+                                children={
+                                    <TextButton
+                                        onClick={() => {history.push('/add-product')}}
+                                        prefixIcon={<Add />}>New Item
+                                    </TextButton>
+                                }
                             />
                         </Cell>
                     }
