@@ -10,10 +10,12 @@ export interface Product {
 
 interface StoreContext {
     products: Product[];
+    addProduct: (product: Product) => void;
+    removeProduct: (index: number) => void;
 }
 
-export const contextValue: StoreContext = {
-    products: [
+export const contextValue = (): StoreContext => {
+    const products: Product[] = [
         {
             imageSrc:
                 'https://litb-cgis.rightinthebox.com/images/x/202105/bps/product/inc/qruive1621230222516.jpg',
@@ -28,8 +30,21 @@ export const contextValue: StoreContext = {
             subtitle: '$7.89',
             badge: <Badge skin="standard">New</Badge>,
         },
-    ],
-}
+    ];
 
-export const Context = React.createContext<StoreContext>(contextValue);
+    const addProduct = (product: Product) => {
+        products.push(product);
+    };
 
+    const removeProduct = (index: number) => {
+        products.splice(index);
+    };
+
+    return {
+        products,
+        addProduct,
+        removeProduct,
+    }
+};
+
+export const Context = React.createContext<StoreContext>(contextValue());

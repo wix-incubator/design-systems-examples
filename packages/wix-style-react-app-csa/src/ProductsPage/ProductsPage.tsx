@@ -10,18 +10,22 @@ import {
     Proportion,
 } from 'wix-style-react';
 import Duplicate from 'wix-ui-icons-common/Duplicate';
-import MoveTo from 'wix-ui-icons-common/MoveTo';
 import More from 'wix-ui-icons-common/More';
 import Delete from 'wix-ui-icons-common/Delete';
-import Hidden from 'wix-ui-icons-common/Hidden';
 import { useHistory } from 'react-router-dom';
 import { Context, Product } from '../Context/context';
 
 const ProductsPage: React.FC = () => {
     const history = useHistory();
+    const { products, addProduct, removeProduct } = useContext(Context);
 
-    const renderCardGalleryItem = ({ imageSrc, title, subtitle, badge }: Product) => (
-        <CardGalleryItem
+    const renderCardGalleryItem = (
+        product: Product,
+        index: number
+    ) => {
+        const {title, subtitle, imageSrc, badge} = product;
+
+        return <CardGalleryItem
             title={title}
             subtitle={subtitle}
             badge={badge}
@@ -46,20 +50,21 @@ const ProductsPage: React.FC = () => {
                         </IconButton>
                     )}
                 >
-                    <PopoverMenu.MenuItem text="Dublicate" prefixIcon={<Duplicate />} />
-                    <PopoverMenu.MenuItem text="Move to" prefixIcon={<MoveTo />} />
-                    <PopoverMenu.MenuItem text="Hide" prefixIcon={<Hidden />} />
                     <PopoverMenu.MenuItem
-                        text="Archive"
+                        text="Dublicate"
+                        prefixIcon={<Duplicate />}
+                        onClick={() => addProduct(product)}
+                    />
+                    <PopoverMenu.MenuItem
+                        text="Delete"
                         skin="destructive"
                         prefixIcon={<Delete />}
+                        onClick={() => removeProduct(index)}
                     />
                 </PopoverMenu>
             }
         />
-    );
-
-    const {products} = useContext(Context)
+        };
 
     return (
         <Page height="100vh">
@@ -68,7 +73,7 @@ const ProductsPage: React.FC = () => {
                 <Layout>
                     {products.map((product, index) => (
                         <Cell key={index} span={4}>
-                            {renderCardGalleryItem(product)}
+                            {renderCardGalleryItem(product, index)}
                         </Cell>
                     ))}
                     <Cell span={4}>

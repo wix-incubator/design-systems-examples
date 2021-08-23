@@ -12,7 +12,7 @@ export interface AppProps {
 
 
 export const App: React.VFC<AppProps> = ({ className }) => (
-    <Context.Provider value={contextValue}>
+    <Context.Provider value={contextValue()}>
         <main className={st(classes.root, className)}>
             <Router>
                 <Switch>
