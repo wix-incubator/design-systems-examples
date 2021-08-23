@@ -4,15 +4,14 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 import ProductsPage from './ProductsPage/ProductsPage';
 import AddProduct from './AddProductPage/AddProduct';
-import { Context, contextValue } from './Context/context';
+import { Context, useContextValue } from './Context/context';
 
 export interface AppProps {
     className?: string;
 }
 
-
 export const App: React.VFC<AppProps> = ({ className }) => (
-    <Context.Provider value={contextValue()}>
+    <Context.Provider value={useContextValue()}>
         <main className={st(classes.root, className)}>
             <Router>
                 <Switch>

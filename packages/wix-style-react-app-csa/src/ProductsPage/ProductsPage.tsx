@@ -8,12 +8,16 @@ import {
     AddItem,
     Page,
     Proportion,
+    EmptyState,
+    Box,
+    TextButton,
 } from 'wix-style-react';
 import Duplicate from 'wix-ui-icons-common/Duplicate';
 import More from 'wix-ui-icons-common/More';
+import Add from 'wix-ui-icons-common/Add';
 import Delete from 'wix-ui-icons-common/Delete';
-import { useHistory } from 'react-router-dom';
-import { Context, Product } from '../Context/context';
+import {useHistory} from 'react-router-dom';
+import {Context, Product} from '../Context/context';
 
 const ProductsPage: React.FC = () => {
     const history = useHistory();
@@ -21,9 +25,8 @@ const ProductsPage: React.FC = () => {
 
     const renderCardGalleryItem = (
         product: Product,
-        index: number
     ) => {
-        const {title, subtitle, imageSrc, badge} = product;
+        const {title, subtitle, imageSrc, badge, id} = product;
 
         return <CardGalleryItem
             title={title}
@@ -46,7 +49,7 @@ const ProductsPage: React.FC = () => {
                             size="small"
                             priority="secondary"
                         >
-                            <More />
+                            <More/>
                         </IconButton>
                     )}
                 >
@@ -59,35 +62,58 @@ const ProductsPage: React.FC = () => {
                         text="Delete"
                         skin="destructive"
                         prefixIcon={<Delete />}
-                        onClick={() => removeProduct(index)}
+                        onClick={() => removeProduct(id)}
                     />
                 </PopoverMenu>
             }
         />
-        };
+    };
+
+
+    const renderProductsGallery = (products: Product[]) => {
+        return <>
+            {products.map((product, index) => (
+                <Cell key={index} span={4}>
+                    {renderCardGalleryItem(product)}
+                </Cell>
+            ))}
+            <Cell span={4}>
+                <Proportion>
+                    <AddItem
+                        onClick={() => {
+                            history.push('/add-product');
+                        }}
+                        size="large"
+                    >
+                        Add Item
+                    </AddItem>
+                </Proportion>
+            </Cell>
+        </>
+    }
 
     return (
         <Page height="100vh">
-            <Page.Header title="Page Title" />
+            <Page.Header title="Page Title"/>
             <Page.Content>
                 <Layout>
-                    {products.map((product, index) => (
-                        <Cell key={index} span={4}>
-                            {renderCardGalleryItem(product, index)}
+                    {products?.length > 0 ?
+                        renderProductsGallery(products) :
+                        <Cell>
+                            <EmptyState
+                                theme='page'
+                                image={<Box height={120} width={120} borderRadius='50%' backgroundColor='D50'/>}
+                                title="You don't have any items yet"
+                                subtitle="Create your product item in an easy & fast way to display it on your site"
+                                children={
+                                    <TextButton
+                                        onClick={() => {history.push('/add-product')}}
+                                        prefixIcon={<Add />}>New Item
+                                    </TextButton>
+                                }
+                            />
                         </Cell>
-                    ))}
-                    <Cell span={4}>
-                        <Proportion>
-                            <AddItem
-                                onClick={() => {
-                                    history.push('/add-product');
-                                }}
-                                size="large"
-                            >
-                                Add Item
-                            </AddItem>
-                        </Proportion>
-                    </Cell>
+                    }
                 </Layout>
             </Page.Content>
         </Page>

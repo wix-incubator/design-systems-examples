@@ -20,6 +20,7 @@ export function useForm() {
             title: name,
             subtitle: `${price ? price : 0}`,
             badge: <Badge skin="standard">{description}</Badge>,
+            id: `${Date.now()}`
         };
         context.addProduct(product);
         history.push('/products-page')
