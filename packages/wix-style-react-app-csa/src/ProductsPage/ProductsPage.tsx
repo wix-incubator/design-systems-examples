@@ -96,7 +96,7 @@ const ProductsPage: React.FC = () => {
             <Page.Header title="Page Title"/>
             <Page.Content>
                 <Layout>
-                    {products.length > 0 ?
+                    {products?.length > 0 ?
                         renderProductsGallery(products) :
                         <Cell>
                             <EmptyState
