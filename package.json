@@ -1,0 +1,23 @@
+{
+  "name": "design-systems-examples",
+  "version": "1.0.0",
+  "description": "Design Systems Examples",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wix-incubator/design-systems-examples.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wix-incubator/design-systems-examples/issues"
+  },
+  "homepage": "https://github.com/wix-incubator/design-systems-examples#readme",
+  "workspaces": {
+    "packages": ["packages/*"]
+  }
+}
