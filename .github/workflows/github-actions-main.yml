@@ -24,6 +24,6 @@ jobs:
 
     - name: Build
       run: |
-        cd packages/wix-style-react-app-csa      
-        npm install
-        npx webpack --mode production --no-devtool
+        yarn
+        yarn postinstall     
+        lerna run build
