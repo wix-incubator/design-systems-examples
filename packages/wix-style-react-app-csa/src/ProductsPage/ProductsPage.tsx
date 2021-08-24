@@ -55,7 +55,7 @@ const ProductsPage: React.FC = () => {
                         <PopoverMenu.MenuItem
                             text="Dublicate"
                             prefixIcon={<Duplicate />}
-                            onClick={() => addProduct(product)}
+                            onClick={() => addProduct({...product, id: `${Date.now()}`})}
                         />
                         <PopoverMenu.MenuItem
                             text="Delete"
