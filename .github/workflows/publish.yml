@@ -23,22 +23,23 @@ jobs:
 
     # step 2 build
     - name: Build
+      id: build
       run: |
         yarn    
         npx lerna run build
-        curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_1SMQtFZyCW68J9WaxFaHmV5c2cv0/rcCeSGIryP
       continue-on-error: true
       
     # step 3 publish
     - name: Publish
-      if: ${{ success() }}
+      id: publish
+      if: job.steps.build.status == 'success'
       run: |
         curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_1SMQtFZyCW68J9WaxFaHmV5c2cv0/rcCeSGIryP
       continue-on-error: true
       
     # step 4 (optional upon errors) report on Slack
     - name: Slack notification upon failure
-      if: ${{ failure() }}
+      if: job.steps.build.status != 'success'
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_COLOR: '#FF0000'
@@ -49,7 +50,7 @@ jobs:
 
     # step 5 (optional upon errors) exit with error code
     - name: Failure status
-      if: ${{ failure() }}
+      if: job.steps.build.status != 'success'
       run: exit 1
 
         
