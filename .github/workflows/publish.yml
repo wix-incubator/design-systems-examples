@@ -1,0 +1,27 @@
+name: Design Systems Examples Publish
+on:
+  push:
+    branches:
+      - "main"    
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Publish
+      run: |
+        yarn    
+        npx lerna run build
+        curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_1SMQtFZyCW68J9WaxFaHmV5c2cv0/rcCeSGIryP
