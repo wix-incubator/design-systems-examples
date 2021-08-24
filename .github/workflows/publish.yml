@@ -5,31 +5,38 @@ on:
       - "main"    
 
 jobs:
-  
   publish:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x]
+    
     steps:
+    # step 1 use node
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Publish
+
+    # step 2 build
+    - name: Build
       run: |
         yarn    
         npx lerna run build
         curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_1SMQtFZyCW68J9WaxFaHmV5c2cv0/rcCeSGIryP
-        
-  slackNotification:
-    name: Slack Notification
-    if: ${{ failure() }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Slack Notification
+      continue-on-error: true
+      
+    # step 3 publish
+    - name: Publish
+      if: ${{ success() }}
+      run: |
+        curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_1SMQtFZyCW68J9WaxFaHmV5c2cv0/rcCeSGIryP
+      continue-on-error: true
+      
+    # step 4 (optional upon errors) report on Slack
+    - name: Slack notification upon failure
+      if: ${{ failure() }}
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_COLOR: '#FF0000'
@@ -37,3 +44,12 @@ jobs:
         SLACK_MESSAGE: 'Build Failed :no_entry_sign:'
         SLACK_TITLE: Build Failed
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} # TODO: replace slack webhook secret with the right channel
+
+    # step 5 (optional upon errors) exit with error code
+    - name: Failure status
+      if: ${{ failure() }}
+      run: exit 1
+
+        
+        
+        
