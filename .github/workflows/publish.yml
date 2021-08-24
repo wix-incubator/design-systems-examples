@@ -5,23 +5,35 @@ on:
       - "main"    
 
 jobs:
+  
   publish:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [12.x]
-    
     steps:
     - uses: actions/checkout@v2
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-
     - name: Publish
       run: |
         yarn    
         npx lerna run build
         curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_1SMQtFZyCW68J9WaxFaHmV5c2cv0/rcCeSGIryP
+        
+  slackNotification:
+    name: Slack Notification
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_COLOR: '#FF0000'
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_MESSAGE: 'Build Failed :no_entry_sign:'
+        SLACK_TITLE: Build Failed
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} # TODO: replace slack webhook secret with the right channel
