@@ -95,7 +95,7 @@ const ProductsPage: React.FC = () => {
 
     return (
         <Page height="100vh">
-            <Page.Header title="Page Title" />
+            <Page.Header title="Products Page" />
             <Page.Content>
                 <Layout>
                     {products?.length > 0 ? (
