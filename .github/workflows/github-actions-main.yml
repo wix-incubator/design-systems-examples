@@ -26,3 +26,4 @@ jobs:
       run: |
         yarn    
         npx lerna run build
+        curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_1SMQtFZyCW68J9WaxFaHmV5c2cv0/rcCeSGIryP
