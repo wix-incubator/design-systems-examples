@@ -7,7 +7,6 @@
     "clean": "rimraf dist",
     "prebuild": "yarn run clean",
     "build": "webpack --mode production --no-devtool",
-    "postinstall": "lerna bootstrap --no-hoist",
     "start": "webpack serve --open",
     "serve": "serve ./dist",
     "lint": "eslint . -f codeframe",
