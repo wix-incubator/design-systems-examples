@@ -29,7 +29,7 @@
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "url-loader": "^4.1.1",
-    "wix-style-react": "^9.152.0"
+    "wix-style-react": "9.151.0"
   },
   "devDependencies": {
     "@stylable/core": "^4.6.0",
