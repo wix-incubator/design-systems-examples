@@ -9,7 +9,6 @@ Each library has few examples of how to generate a project. The projects were cr
 
 * [`create-styleable-app`](https://stylable.io/docs/getting-started/install-configure/)
 * [`Basic webpack configuration`](https://webpack.js.org/guides/getting-started/)
-* [`create-react-app`](https://reactjs.org/docs/create-a-new-react-app.html)
 
 Each method has an example package.
 
@@ -18,8 +17,8 @@ This repository is a monorepo managed by [lerna](https://github.com/lerna/lerna)
 As stated, it contains the following UI libraries:
 
 * `wix-style-react`
-* `wix-ui-tpa`
-* `wix-base-ui`
+* `wix-ui-tpa` /* TODO: Will be added in the future */
+* `wix-base-ui` /* TODO: Will be added in the future */
 
 ## How to setup
 
