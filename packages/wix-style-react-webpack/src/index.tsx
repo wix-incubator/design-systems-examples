@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ProductsPage from "./ProductPage/ProductsPage";
+import { App } from './app';
 
 ReactDOM.render(
-  <ProductsPage />,
+  <App />,
   document.body.appendChild(document.createElement("div"))
 );
