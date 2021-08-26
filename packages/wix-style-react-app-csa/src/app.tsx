@@ -2,7 +2,7 @@ import type React from 'react';
 import { st, classes } from './app.st.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
-import ProductsPage from './ProductsPage/ProductsPage';
+import ProductsPage from '../../../common/wix-style-react/ProductsPage/ProductsPage';
 import AddProduct from './AddProductPage/AddProduct';
 import { Context, useContextValue } from './Context/context';
 

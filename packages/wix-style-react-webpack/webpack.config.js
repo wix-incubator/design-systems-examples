@@ -64,6 +64,10 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
     },
-    plugins: [new StylableWebpackPlugin(), new HtmlWebpackPlugin({ title: 'Stylable App' })],
+    plugins: [new StylableWebpackPlugin({
+        unsafeMuteDiagnostics: {
+            DUPLICATE_MODULE_NAMESPACE: true
+        }
+    }), new HtmlWebpackPlugin({ title: 'Stylable App' })],
     cache: { type: 'filesystem' },
 };

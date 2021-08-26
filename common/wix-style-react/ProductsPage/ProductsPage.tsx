@@ -17,7 +17,7 @@ import More from 'wix-ui-icons-common/More';
 import Add from 'wix-ui-icons-common/Add';
 import Delete from 'wix-ui-icons-common/Delete';
 import { useHistory } from 'react-router-dom';
-import { Context, Product } from '../Context/context';
+import { Context, Product } from 'wix-style-react-app-csa/dist/Context/context';
 
 const ProductsPage: React.FC = () => {
     const history = useHistory();
