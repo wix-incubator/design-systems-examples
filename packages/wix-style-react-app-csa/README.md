@@ -8,7 +8,7 @@ The app is available [here](https://design-systems-examples.vercel.app).
 
 ### Creating Stylable Compatible App
 
-Generating a project using `create-stylable-app`:
+Generating a project using [`create-stylable-app`](https://stylable.io/docs/getting-started/install-configure/):
 ```bash
 npx create-stylable-app <project-name> --template typescript
 ```
