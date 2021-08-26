@@ -11,9 +11,31 @@ Each library has few examples of how to generate a project. The projects were cr
 
 Each method has an example package.
 
-This repository is a monorepo managed by lerna.
+This repository is a monorepo managed by  [lerna](https://github.com/lerna/lerna)..
 As stated, it contains the following UI libraries:
 
 * `wix-style-react`
 * `wix-ui-tpa`
 * `wix-base-ui`
+
+## How to setup
+
+1. Clone the repo
+
+```git clone git@github.com:wix-incubator/design-systems-examples.git
+```
+
+2. Install all dependencies
+
+```yarn
+```
+
+3.1. In order to run all the packages in parallel use
+
+```npx lerna start
+```
+
+3.2. In order to run a specific package use
+
+```yarn start:{package-name} (e.g yarn start:wix-style-react-app-csa)
+```

@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "lerna bootstrap --no-hoist --no-ci",
-    "start:csa": "lerna exec --scope wix-style-react-app-csa yarn start",
-    "start:webpack": "lerna exec --scope wix-style-react-webpack yarn start"
+    "start:wix-style-react-app-csa": "lerna exec --scope wix-style-react-app-csa yarn start",
+    "start:wix-style-react-webpack": "lerna exec --scope wix-style-react-webpack yarn start"
   },
   "repository": {
     "type": "git",
