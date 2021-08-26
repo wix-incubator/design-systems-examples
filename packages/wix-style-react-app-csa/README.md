@@ -91,7 +91,7 @@ yarn add url-loader style-loader css-loader node-sass resolve-url-loader sass-lo
   };
 ```
 
-5. Run your app:
+4. Run your app:
 ```bash
 yarn start
 ```
