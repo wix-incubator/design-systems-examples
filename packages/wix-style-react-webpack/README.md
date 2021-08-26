@@ -11,8 +11,8 @@
 
 1. Generating an empty webpack project:
 ```bash
-mkdir webpack-demo
-cd webpack-demo
+mkdir wix-style-react-webpack
+cd wix-style-react-webpack
 npm init -y
 npm install webpack webpack-cli --save-dev
 ```
