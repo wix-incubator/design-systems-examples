@@ -46,7 +46,7 @@ jobs:
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_MESSAGE: 'Build Failed :no_entry_sign:'
         SLACK_TITLE: Build Failed
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} # TODO: replace slack webhook secret with the right channel
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
     # step 5 (optional upon errors) exit with error code
     - name: Failure status
