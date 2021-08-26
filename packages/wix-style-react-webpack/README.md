@@ -66,9 +66,7 @@ yarn add wix-style-react
 ```bash
 yarn add style-loader css-loader node-sass resolve-url-loader sass-loader --dev
 ```
-3. Configure `webpack.config.js`:
-
-4. Use loaders in `webpack.config.js` file:
+3. Use loaders in `webpack.config.js` file:
 ```diff
   const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
   const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -136,7 +134,7 @@ yarn add style-loader css-loader node-sass resolve-url-loader sass-loader --dev
   };
 ```
 
-5. Run your app:
+4. Run your app:
 ```bash
 yarn start
 ```
