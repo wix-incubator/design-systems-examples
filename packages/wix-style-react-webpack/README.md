@@ -97,8 +97,7 @@ yarn add style-loader css-loader node-sass resolve-url-loader sass-loader --dev
 +                 test: /\.scss$/,
 +                 include: [
 +                     path.join(__dirname, 'node_modules/wix-animations'),
-+                     path.join(__dirname, 'node_modules/wix-style-react'),
-+                     path.join(__dirname, 'node_modules/bootstrap-sass')
++                     path.join(__dirname, 'node_modules/wix-style-react')
 +                 ],
 +                 use: [
 +                     {
