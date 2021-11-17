@@ -65,4 +65,7 @@ module.exports = {
     },
     plugins: [new StylableWebpackPlugin(), new HtmlWebpackPlugin({ title: 'Stylable App' })],
     cache: { type: 'filesystem' },
+    ignoreWarnings: [
+        {module: /wix-style-react/} // this is needed because WSR is using Stylable@3 syntax which Stylable@4 webpack plugin considering deprecated. This is causing the "red warnings" in dev mode. This line will prevents the warnings to break the dev mode.
+    ]
 };
