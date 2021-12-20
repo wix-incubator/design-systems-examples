@@ -10,7 +10,7 @@ The app is available [here](https://design-systems-examples.vercel.app).
 
 Generating a project using [`create-stylable-app`](https://stylable.io/docs/getting-started/install-configure/):
 ```bash
-npx create-stylable-app <project-name> --template typescript
+npx create-stylable-app <project-name>
 ```
 
 ### Integrating Wix Style React
@@ -40,7 +40,7 @@ yarn add url-loader style-loader css-loader node-sass resolve-url-loader sass-lo
               },
 -             {
 -                 test: /\.(png|jpg|jpeg|gif|svg)$/,
--                 loader: 'file-loader',
+-                 loader: 'asset',
 -             },
 +             {
 +                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
