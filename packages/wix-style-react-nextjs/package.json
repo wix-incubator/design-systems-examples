@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "wix-style-react": "https://cdn.dev.wixpress.com/wix-style-react/29f48bc60c0a2b450e1fb16f8bd872e8139425cc0f8f268f8fc840d3.tar.gz"
+  },
+  "devDependencies": {
+    "@stylable/webpack-plugin": "^5.0.0",
+    "@stylable/optimizer": "^5.1.0"
+  }
+}
