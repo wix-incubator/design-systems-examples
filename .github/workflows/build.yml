@@ -2,7 +2,7 @@ name: Design Systems Examples Build
 on:
   push:
     branches:
-      - '**'    
+      - '**'
 
 jobs:
   build:
@@ -10,17 +10,27 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
-    
+        node-version: [16.x]
+
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Build
-      run: |
-        yarn    
-        npx lerna run build
+      - name: Build
+        run: |
+          yarn    
+          npx lerna run build
+
+        # step 2 (optional upon errors) report on Slack
+      - name: Slack notification upon failure
+        if: steps.build.outcome != 'success'
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_COLOR: '#FF0000'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: 'Build Failed :no_entry_sign:'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

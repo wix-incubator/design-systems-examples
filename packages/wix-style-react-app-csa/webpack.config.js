@@ -1,6 +1,5 @@
 const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
@@ -9,7 +8,7 @@ module.exports = {
     devServer: {
         port: 3000,
         historyApiFallback: true,
-      },
+    },
     module: {
         rules: [
             {
@@ -27,37 +26,6 @@ module.exports = {
                     },
                 ],
             },
-            {
-                test: /\.scss$/,
-                include: [
-                    path.join(__dirname, 'node_modules/wix-animations'),
-                    path.join(__dirname, 'node_modules/wix-style-react')
-                ],
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            modules: {
-                                localIdentName: '[name]__[local]___[hash:base64:5]',
-                                exportLocalsConvention: 'camelCase',
-                            },
-                        },
-                    },
-                    {
-                        loader: 'resolve-url-loader',
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                ],
-            },
         ],
     },
     resolve: {
@@ -66,6 +34,6 @@ module.exports = {
     plugins: [new StylableWebpackPlugin(), new HtmlWebpackPlugin({ title: 'Stylable App' })],
     cache: { type: 'filesystem' },
     ignoreWarnings: [
-        {module: /wix-style-react/} // this is needed because WSR is using Stylable@3 syntax which Stylable@4 webpack plugin considering deprecated. This is causing the "red warnings" in dev mode. This line will prevents the warnings to break the dev mode.
-    ]
+        { module: /wix-style-react/ }, // this is needed because WSR is using Stylable@3 syntax which Stylable@4 webpack plugin considering deprecated. This is causing the "red warnings" in dev mode. This line will prevents the warnings to break the dev mode.
+    ],
 };
