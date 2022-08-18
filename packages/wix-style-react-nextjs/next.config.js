@@ -3,36 +3,52 @@ const {
   applyWebpackConfigStylableExcludes,
 } = require('@stylable/webpack-plugin');
 
-/*
- * single optimizer for NextJS multiple builds
- * in order to sync client/server namespaces
- */
 const StylableOptimizer = require('@stylable/optimizer').StylableOptimizer;
 const stylableOptimizer = new StylableOptimizer();
 
 module.exports = {
-  webpack: (config) => {
-    /* exclude Stylable files from all other loaders */
+  reactStrictMode: true,
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // causes provided packages to be bundled (not external)
+      bundleLibs(config, new Set(['wix-style-react', 'wix-ui-core']));
+    }
+
+    // excludes other configs from attempting to handle stylable files
     applyWebpackConfigStylableExcludes(config);
 
-    /* add the Stylable plugin to the webpack configuration */
     config.plugins.push(
       new StylableWebpackPlugin({
-        /* let NextJS handle assets */
         filterAssets: () => false,
-
-        /* output CSS to the correct location */
         filename: 'static/css/stylable.[contenthash].css',
-
-        /* a shared optimizer instance */
         optimizer: stylableOptimizer,
       }),
     );
 
-    config.ignoreWarnings = [
-      { module: /wix-style-react/ }, // this is needed because WSR is using Stylable@3 syntax which Stylable@5 webpack plugin considering deprecated. This is causing the "red warnings" in dev mode. This line will prevents the warnings to break the dev mode.
-    ];
-
     return config;
   },
 };
+
+function bundleLibs(config, packages) {
+  if (
+    !Array.isArray(config.externals) &&
+    config.externals.length === 1 &&
+    typeof config.externals[0] === 'function'
+  ) {
+    throw new Error(
+      'Invalid configuration: expected config.externals to be an Array with a single function. got ' +
+        JSON.stringify(config.externals),
+    );
+  }
+  const nextExternals = config.externals[0];
+  config.externals = [
+    async (ctx) => {
+      for (const pack of packages) {
+        if (ctx.request.startsWith(pack)) {
+          return false;
+        }
+      }
+      return nextExternals(ctx);
+    },
+  ];
+}

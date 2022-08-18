@@ -3,13 +3,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next build && next start"
   },
   "dependencies": {
     "next": "latest",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "wix-style-react": "^10.49.0",
+    "wix-style-react": "^10.50.0",
     "@stylable/webpack-plugin": "^5.2.0",
     "@stylable/optimizer": "^5.2.0"
   }
