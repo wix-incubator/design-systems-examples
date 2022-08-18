@@ -18,7 +18,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^5.2.0",
     "resolve-url-loader": "^4.0.0",
-    "wix-style-react": "^10.49.0"
+    "wix-style-react": "^10.50.0"
   },
   "devDependencies": {
     "url-loader": "^4.1.1",

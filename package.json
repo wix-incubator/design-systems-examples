@@ -9,7 +9,8 @@
     "postinstall": "lerna bootstrap --no-hoist --no-ci",
     "build": "lerna run build",
     "start:wix-style-react-app-csa": "lerna exec --scope wix-style-react-app-csa npm run start",
-    "start:wix-style-react-webpack": "lerna exec --scope wix-style-react-webpack npm run start"
+    "start:wix-style-react-webpack": "lerna exec --scope wix-style-react-webpack npm run start",
+    "start:wix-style-react-nextjs": "lerna exec --scope wix-style-react-nextjs npm run start"
   },
   "repository": {
     "type": "git",
